@@ -8,15 +8,12 @@ mainimg = '/home/shrutheeshir/Desktop/ODLC-GUI/static/images/MainImage.jpg'
 
 class ImageVals:
     
-    def __init__(self,imageArray,imageIndex):
+    def __init__(self,):
         self.imageIndex = 0
         self.imageArray = []
         
-    def val_set(self,imageArray,imageIndex):
-        self.imageIndex = imageIndex
-        self.imageArray = imageArray
 
-    def getimg(self,imageArray,imageIndex):
+    def getimg(self):
 
         for subdir, dirs, files in os.walk(path):
             for file in files:
@@ -31,14 +28,14 @@ class ImageVals:
         
         return None
 
-    def previousimg(self,imageArray,imageIndex,myImage):
+    def previousimg(self,myImage):
         if (self.imageIndex!=0):
             self.imageIndex=self.imageIndex-1
             print('*******' + str(self.imageIndex))
             myImage.setAttribute('src','images/'+self.imageArray[self.imageIndex])
             #myImage.src = (self.imageArray[self.imageIndex])
             #return self.imageArray,self.imageIndex;
-            return None
+        return None
     
     def nextimg(self,imageArray,imageIndex,myImage):
         print('*******' + str(self.imageIndex) + '*****')
@@ -55,29 +52,20 @@ class ImageVals:
             myImage.setAttribute('src','images/'+self.imageArray[self.imageIndex])
             #print("Index",self.imageIndex)
             #return self.imageArray,self.imageIndex;
-            return None
+        return None
     
     def deleteimg(self,imageArray,imageIndex):
         #self.imageIndex = self.imageIndex-1
         os.unlink(self.imageArray[self.imageIndex])
-        self.imageArray.remove(self.imageArray[self.imageIndex])
-
-        if(self.imageIndex==len(self.imageArray)):
-            self.imageIndex=0
-
-        #self.imageIndex+=1
+        self.imageIndex+=2
         #return self.imageArray,self.imageIndex;
         return None
         
     def moveimg(self,imageArray,imageIndex):
         #self.imageIndex = self.imageIndex-1
         os.rename(self.imageArray[self.imageIndex], path1+'img'+str(imageIndex)+'.jpg')
-        self.imageArray.remove(self.imageArray[self.imageIndex])
-        #self.imageIndex+=1
+        self.imageIndex+=2
         #return self.imageArray,self.imageIndex;
-        if(self.imageIndex==len(self.imageArray)):
-            self.imageIndex=0
-        
         return None
         
     def image_src(self,imageArray,imageIndex):

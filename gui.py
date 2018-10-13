@@ -5,6 +5,13 @@ sys.path.append('/home/shrutheeshir/Desktop/interop/client/')
 import interop
 import AdvancedHTMLParser
 
+path = '/home/shrutheeshir/Desktop/ODLC-GUI/static/images'
+path1 = '/home/shrutheeshir/Desktop/ODLC-GUI/static/images_moved/'
+mainimg = '/home/shrutheeshir/Desktop/ODLC-GUI/static/images/MainImage.jpg'
+
+
+
+
 parser = AdvancedHTMLParser.AdvancedHTMLParser()
 parser.parseFile('/home/shrutheeshir/Desktop/ODLC-GUI/templates/html/gui_form.html')
 myImage=parser.getElementById('MainImage')
@@ -33,10 +40,10 @@ def dropdown():
                
     im.getimg(im.imageArray,im.imageIndex)
     
-    x = im.image_src(im.imageArray,im.imageIndex)
+    x = im.image_src(im.imageArray,im.imageIndex).replace(path, '')
 
-    print(x)
-    return render_template('html/gui_form.html', odlc_colours = colours, shapes = shapes, orientations = orientations, alphanumeric = alphanumeric)  
+    print('####################' + str(x) + "########")
+    return render_template('html/gui_form.html', odlc_colours = colours, shapes = shapes, orientations = orientations, alphanumeric = alphanumeric, x=str('../../static/images') + x)  
         
 @app.route('/submitForm', methods=['GET','POST'])
 def submit_form():
